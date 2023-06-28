@@ -1,0 +1,38 @@
+containers:
+  ui-env:
+    image: node:lts-slim
+    volumes:
+      - local: UI
+        container: /ui
+    ports: 
+      - local: 5173
+        container: 5173
+    working_directory: /ui
+  unleash-proxy:
+    image: node:lts-slim
+    volumes:
+      - local: unleash-proxy
+        container: /proxy
+    ports:
+      - local: 3000
+        container: 3000
+    working_directory: /proxy
+      
+tasks:
+  ui:install:
+    run:
+      container: ui-env
+      command: npm install
+  run:ui:
+    run:
+      container: ui-env
+      command: yarn dev --host
+  proxy:install:
+     run:
+      container: unleash-proxy
+      command: npm install
+  proxy:
+    run:
+      container: unleash-proxy
+      command: npm run proxy
+  
