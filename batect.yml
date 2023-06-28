@@ -16,6 +16,8 @@ containers:
     ports:
       - local: 3000
         container: 3000
+    environment:
+      PROXY_URL: "http://host.docker.internal:4242/api/"
     working_directory: /proxy
       
 tasks:
@@ -31,7 +33,7 @@ tasks:
      run:
       container: unleash-proxy
       command: npm install
-  proxy:
+  run:proxy:
     run:
       container: unleash-proxy
       command: npm run proxy

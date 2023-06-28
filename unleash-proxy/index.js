@@ -1,9 +1,9 @@
 const port = 3000;
 
 const { createApp } = require('@unleash/proxy');
-
+const proxyUrl = process.env.PROXY_URL || 'http://localhost:4242/api/';
 const app = createApp({
-    unleashUrl: 'http://host.docker.internal:4242/api/',
+    unleashUrl: proxyUrl,
     unleashApiToken: 'default:development.unleash-insecure-api-token',
     clientKeys: ['proxy-client-key'],
     proxyPort: 3000,
