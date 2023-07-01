@@ -19,7 +19,29 @@ containers:
     environment:
       PROXY_URL: "http://host.docker.internal:4242/api/"
     working_directory: /proxy
-      
+  backend-db:
+    image: postgres:latest
+    ports:
+      - local: 5436
+        container: 5436
+    environment:
+      POSTGRES_PASSWORD: "password"
+      POSTGRES_HOST_AUTH_METHOD: "trust"
+    volumes: 
+      - type: cache
+        name: backend-db
+        container: /var/lib/postgresql/data
+  backend-env:
+    build_directory: .batect/backend
+    volumes:
+      - local: backend
+        container: /backend
+    environment:
+      API_URL: "host.docker.internal"
+    ports:
+      - local: 8080
+        container: 8080
+    working_directory: /backend
 tasks:
   ui:install:
     run:
@@ -37,4 +59,12 @@ tasks:
     run:
       container: unleash-proxy
       command: npm run proxy
+  run:db:
+    run:
+      container: backend-db
+      command: postgres -p 5436
+  run:be:
+    run:
+      container: backend-env
+      command: ./gradlew bootrun
   

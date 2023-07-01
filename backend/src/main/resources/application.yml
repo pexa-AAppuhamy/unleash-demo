@@ -1,0 +1,15 @@
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        format_sql: true
+        default_schema: "demo"
+  datasource:
+    generate-unique-name: false
+    url: "jdbc:postgresql://${API_URL}:5436/postgres?currentSchema=demo"
+    username: "postgres"
+    password: "password"
+    driverClassName: org.postgresql.Driver
+

@@ -1,0 +1,45 @@
+openapi: 3.0.2
+info:
+  title: Unleash demo
+  description: Unleash demo
+  version: 1.0.0
+servers:
+  - url: /api/v1
+paths:
+  /users:
+    get:
+      description: Fetches all users
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/userDto"
+
+components:
+  schemas:
+    userDto:
+      type: object
+      required:
+        - id
+        - name
+        - email
+      properties:
+        id:
+          type: string
+          format: uuid
+        firstName:
+          type: string
+        lastName:
+          type: string
+        email:
+          type: string
+          format: email
+    error:
+      type: object
+      properties:
+        message:
+          type: string
