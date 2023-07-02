@@ -13,10 +13,11 @@ import java.io.IOException
 class Client() {
     private val httpClient = OkHttpClient()
     private val jacksonMapper = jacksonObjectMapper()
+    private val apiUrl = System.getenv("API_URL")
     fun getUsersFromProvider(): List<UserDto> {
         jacksonMapper.registerKotlinModule()
         val request = Request.Builder()
-            .url("http://localhost:8082/external/users")
+            .url("http://${apiUrl}:8082/external/users")
             .build()
 
         val userResponse = httpClient.newCall(request).execute().use { response ->

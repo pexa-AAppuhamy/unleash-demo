@@ -3,7 +3,7 @@
     [
         {
             "id": "user_id_123456789",
-            "email": "andrew.app@domain.com",
+            "email": "andrew.app@external.com",
             "firstName": "Andrew",
             "lastName": "Appuhamy"
         }
