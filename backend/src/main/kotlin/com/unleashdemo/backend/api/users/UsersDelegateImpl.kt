@@ -10,7 +10,6 @@ import org.springframework.stereotype.Component
 class UsersDelegateImpl(
     val usersService: UsersService): DefaultDelegate {
     override fun usersGet(): ResponseEntity<UsersGet200Response> {
-        println("Get users")
         return ResponseEntity(UsersGet200Response(usersService.findUsers()), HttpStatus.OK)
     }
 }

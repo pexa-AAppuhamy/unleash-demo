@@ -51,6 +51,7 @@ dependencies {
     implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.1.0")
     implementation("org.hibernate.validator:hibernate-validator:7.0.1.Final")
     implementation("com.squareup.okhttp3:okhttp:4.11.0")
+    implementation("io.getunleash:unleash-client-java:8.2.0")
 }
 
 configure<SourceSetContainer> {

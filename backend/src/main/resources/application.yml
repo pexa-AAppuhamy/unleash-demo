@@ -19,3 +19,6 @@ springdoc:
   swagger-ui:
     url: unleash.spec.yaml
     path: /
+unleash:
+  url: http://localhost:4242/api/
+  apikey: default:development.unleash-insecure-api-token
