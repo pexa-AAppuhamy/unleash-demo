@@ -33,15 +33,31 @@ containers:
         container: /var/lib/postgresql/data
   backend-env:
     build_directory: .batect/backend
+    run_as_current_user:
+      enabled: true
+      home_directory: /home/backend-env
     volumes:
       - local: backend
         container: /backend
+        options: cached
+      - type: cache
+        name: gradle-cache
+        container: /home/backend-env/.gradle
     environment:
       API_URL: "host.docker.internal"
+      GRADLE_OPTS: -Dorg.gradle.daemon=false
     ports:
       - local: 8080
         container: 8080
     working_directory: /backend
+  ext-api:
+    image: wiremock/wiremock:latest
+    ports:
+      - local: 8082
+        container: 8080
+    volumes:
+      - local: mock-external-api/stubs
+        container: /home/wiremock
 tasks:
   ui:install:
     run:
@@ -67,4 +83,9 @@ tasks:
     run:
       container: backend-env
       command: ./gradlew bootrun
+    dependencies:
+      - ext-api
+  run:ext-api:
+    run:
+      container: ext-api
   

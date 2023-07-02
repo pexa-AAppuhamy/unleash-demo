@@ -8,29 +8,35 @@ servers:
 paths:
   /users:
     get:
-      description: Fetches all users
+      description: Fetches all users from external api (toggle off) or db.
       responses:
         '200':
           description: OK
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: "#/components/schemas/userDto"
+                type: object
+                properties:
+                  users:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/userDto"
 
 components:
   schemas:
     userDto:
+      example:
+        id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        email: email
+        firstName: firstName
+        lastName: lastName
       type: object
       required:
         - id
-        - name
         - email
       properties:
         id:
           type: string
-          format: uuid
         firstName:
           type: string
         lastName:

@@ -35,12 +35,13 @@ openApiGenerate {
         "exceptionHandler" to "false",
         "enumPropertyNaming" to "UPPERCASE",
         "swaggerAnnotations" to "false",
+        "documentationProvider" to "source",
+        "serializationLibrary" to "jackson"
     )
     )
 }
 
 dependencies {
-    implementation("org.webjars:swagger-ui:5.1.0")
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.15.2")
@@ -49,6 +50,7 @@ dependencies {
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.1.0")
     implementation("org.hibernate.validator:hibernate-validator:7.0.1.Final")
+    implementation("com.squareup.okhttp3:okhttp:4.11.0")
 }
 
 configure<SourceSetContainer> {

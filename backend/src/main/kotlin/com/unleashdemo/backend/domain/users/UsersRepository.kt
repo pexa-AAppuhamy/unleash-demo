@@ -20,7 +20,6 @@ class UsersRepository(
         }.onFailure {
             println("Failed to get users")
         }.getOrThrow()
-
     }
 
     fun saveUser(user:Users) {
