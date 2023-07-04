@@ -3,11 +3,11 @@ package com.unleashdemo.backend
 import io.getunleash.DefaultUnleash
 import io.getunleash.util.UnleashConfig
 import org.springframework.beans.factory.annotation.Value
-import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.context.annotation.Bean
+import org.springframework.context.annotation.Configuration
 
 
-@SpringBootApplication
+@Configuration
 class UnleashConfig {
 
     @Bean

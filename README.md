@@ -38,10 +38,12 @@ NOTE: If not using batect will need node version >= 18.
 The following Springboot will demo the unleash toggle where when the toggle named `usersfromDB` is toggled on will fetch users from the connected database. If the feature is toggled off it will fetch users from an external api which in this case is a wiremock server.
 Run the following with the unleash server already running (step 5 from React UI demo).
 
-1. Create the feature toggled named `usersfromDB` (step 8 and 9 from React UI demo)
+1. Create the feature toggled named `usersFromDB` (step 8 and 9 from React UI demo)
 
 1. Run the postgres database
     `./batect run:db`
+2. Connect to database and create a schema named demo:
+    `CREATE SCHEMA demo`
 
 2. Generate OpenAPI Kotlin Springboot code
     `./batect api-generate`
